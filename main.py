@@ -5,7 +5,7 @@ from frequency_analyzer import FrequencyAnalyzer
 from visualization import SignalVisualizer
 
 def main():
-    audio_file_path = "dataset/seg_115.wav"
+    audio_file_path = "dataset/seg_114.wav"
     base_results_dir = 'results'
     
     try:
@@ -24,7 +24,10 @@ def main():
         noise_characteristics = analyzer.compute_noise_characteristics()
         
         # Define noise bands and design FIR filter
-        noise_bands = [(49, 51), (98, 102), (30, 36)]
+        # noise_bands = [(49, 51), (98, 102), (30, 36)]
+        # noise_bands = [(48, 51), (98, 102), (105, 109)]
+        # noise_bands = [(195, 201)]
+        noise_bands = [(48, 51), (84,87), (99,101), (1196,1199)]
         fir_coeffs = analyzer.design_fir_filter(noise_bands)
         
         # Apply FIR filter
