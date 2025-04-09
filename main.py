@@ -1,7 +1,7 @@
 import os
 import pathlib
 from signal_loader import SignalLoader
-from frequency_analyzer import FrequencyAnalyzer
+from signal_processing import FrequencyAnalyzer
 from visualization import SignalVisualizer
 
 def main():
