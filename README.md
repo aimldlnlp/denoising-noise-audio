@@ -1,4 +1,4 @@
-it in# Audio Denoising Using FIR Filtering ![Python Version](https://img.shields.io/badge/python-3.x-blue) ![License](https://img.shields.io/badge/license-MIT-green)
+Audio Denoising Using FIR Filtering ![Python Version](https://img.shields.io/badge/python-3.x-blue) ![License](https://img.shields.io/badge/license-MIT-green)
 
 A professional audio signal processing pipeline for noise reduction using custom FIR filters, with comprehensive analysis and visualization capabilities.
 
@@ -113,8 +113,14 @@ We welcome contributions! Please follow these steps:
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Sample Results
-![Frequency Spectrum](results/seg_1/frequency_spectrum.png)  
+![Frequency Spectrum](visualization\seg_1\frequency_spectrum.png)  
 *Example frequency spectrum comparison*
+
+![Time Domain](visualization\seg_1\power_spectral_density.png)  
+*Example time domain comparison*
+
+![Power Spectral Density](visualization\seg_1\power_spectral_density.png)  
+*Example psd comparison*
 
 ## Troubleshooting
 Common issues and solutions:
