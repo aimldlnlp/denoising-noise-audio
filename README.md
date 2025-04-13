@@ -1,101 +1,135 @@
-# Audio Denoising Using FIR Filtering
+it in# Audio Denoising Using FIR Filtering ![Python Version](https://img.shields.io/badge/python-3.x-blue) ![License](https://img.shields.io/badge/license-MIT-green)
 
-This project demonstrates an audio denoising pipeline, where noisy audio signals are processed using a custom FIR filter to remove specific frequency bands. The pipeline also includes visualization tools to compare the raw and filtered signals in time and frequency domains, as well as performance evaluation using Signal-to-Noise Ratio (SNR) and Spectral Flatness metrics.
+A professional audio signal processing pipeline for noise reduction using custom FIR filters, with comprehensive analysis and visualization capabilities.
 
-## Project Structure
+## Table of Contents
+- [Key Features](#key-features)
+- [Quick Start](#quick-start)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+- [License](#license)
 
-denoising_audio/
-│
-├── README.md
-├── main.py
-├── requirements.txt
-├── signal_loader.py
-├── signal_processing.py
-├── visualization.py
-│
-├── dataset/ (contains .wav audio files)
-├── evaluation/ (contains evaluation scripts)
-├── results/ (contains analysis results per segment)
-└── visualization/ (contains visualization scripts and outputs)
+## Key Features
+✔ Advanced FIR filter design for targeted noise removal  
+✔ Comprehensive frequency analysis (FFT, PSD)  
+✔ Interactive visualization tools  
+✔ Quantitative evaluation metrics (SNR, Spectral Flatness)  
+✔ Batch processing capabilities  
 
+## Quick Start
+```python
+# Example: Process a single audio file
+from signal_loader import load_audio
+from signal_processing import FrequencyAnalyzer
 
-## Features
+audio, rate = load_audio("dataset/seg_1.wav")
+analyzer = FrequencyAnalyzer(audio, rate)
+filtered = analyzer.apply_filter()
+```
 
-- **Noise Removal**: The project identifies and removes noise from audio signals using a custom-designed FIR filter.
-- **Frequency Analysis**: It performs Fast Fourier Transform (FFT) and Power Spectral Density (PSD) analysis to identify noise characteristics.
-- **Visualization**: Visualizes the time-domain waveform, frequency spectrum, and PSD of both raw and filtered audio signals.
-- **Evaluation**: Computes Signal-to-Noise Ratio (SNR) and Spectral Flatness to evaluate the effectiveness of the filtering process.
+## Installation
+1. Clone the repository:
+```bash
+git clone https://github.com/aimldlnlp/audio-denoising.git
+cd audio-denoising
+```
 
-## Requirements
-
-- Python 3.x
-- `numpy`
-- `scipy`
-- `soundfile`
-- `matplotlib`
-
-You can install the required dependencies by running:
-
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
+```
 
-# How to Use
+## Usage
+### Basic Pipeline Execution
+```bash
+python main.py --input dataset/seg_1.wav --output results/seg_1
+```
 
-1. **Prepare Your Dataset**: Place your noisy audio files in the `dataset/` directory. The files should be in `.wav` format.
+### Visualization
+Generate visualizations for a single file:
+```bash
+python visualization/usage.py --input dataset/seg_1.wav
+```
 
-2. **Run the Pipeline**:
-   
-   * The main script `main.py` loads an audio file, applies FIR filtering to remove noise, and saves the filtered audio in the `results/` directory.
-   
-   * You can specify the audio file path in the `main.py` script by modifying the `audio_file_path` variable.
+Batch process all files:
+```bash
+python visualization/batch_visualize.py
+```
 
-3. **Visualize the Results**:
-   
-   * The `visualization/usage.py` script generates time-domain and frequency-domain visualizations comparing the original and filtered signals for a single audio segment.
-   
-   * The `visualization/batch_visualize.py` script can be used to generate visualizations for all the audio segments in the `dataset/` directory.
+### Evaluation
+Run evaluation metrics:
+```bash
+python evaluation/eval.py --noisy dataset/seg_1.wav --filtered results/seg_1/filtered_audio.wav
+```
 
-4. **Evaluate the Performance**:
-   
-   * The `evaluation/eval.py` script calculates the Signal-to-Noise Ratio (SNR) and Spectral Flatness for a pair of noisy and filtered signals.
+## Project Structure
+```
+denoising_audio/
+│
+├── README.md               # Project documentation
+├── main.py                 # Main pipeline script
+├── requirements.txt        # Dependency list
+│
+├── signal_loader.py        # Audio loading utilities
+├── signal_processing.py    # Core processing algorithms
+├── visualization.py        # Visualization utilities
+│
+├── dataset/                # Input audio files (.wav)
+├── evaluation/             # Evaluation scripts
+├── results/                # Analysis results
+└── visualization/          # Visualization outputs
+```
 
-## Code Description
+## Documentation
+### Core Modules
+- **`signal_loader.py`**  
+  Handles audio file I/O operations using `soundfile` library.
 
-### `main.py`
+- **`signal_processing.py`**  
+  Contains the `FrequencyAnalyzer` class with methods for:
+  - FFT analysis
+  - PSD calculation
+  - FIR filter design
+  - Noise removal
 
-The entry point for the audio denoising pipeline. It loads an audio file, normalizes the signal, identifies noise characteristics, designs an FIR filter to remove noise, and saves the filtered audio.
+- **`visualization.py`**  
+  Provides plotting functions for:
+  - Time-domain waveforms
+  - Frequency spectra
+  - Power spectral densities
 
-### `signal_loader.py`
-
-Responsible for loading, normalizing, and saving audio signals. It uses the `soundfile` library to read and write `.wav` files.
-
-### `signal_processing.py`
-
-Contains the `FrequencyAnalyzer` class, which performs:
-
-*   FFT for frequency domain analysis
-*   Power Spectral Density (PSD) calculation
-*   Design and application of an FIR filter to remove noise
-
-### `visualization/`
-
-Contains functions to visualize the signals:
-
-*   `EnhancedSignalVisualizer`: Provides static methods to plot time-domain waveforms, frequency spectrum, and PSD.
-*   `batch_visualize.py`: A script to generate visualizations for all audio segments in the `dataset/` directory.
-*   `usage.py`: A script to generate visualizations for a single audio segment.
-
-### `evaluation/eval.py`
-
-Calculates and displays the Signal-to-Noise Ratio (SNR) and Spectral Flatness between the original noisy and filtered audio signals.
-
-## Future Improvements
-
-*   **Machine Learning-based Denoising**: Implement machine learning models to learn noise profiles and remove noise more effectively.
-*   **Multi-band FIR Filtering**: Use adaptive or multi-band FIR filtering to handle more complex noise types.
-*   **Web Interface**: Create a web application for interactive audio denoising and visualization.
+## Contributing
+We welcome contributions! Please follow these steps:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
+Distributed under the MIT License. See `LICENSE` for more information.
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-"""
+## Sample Results
+![Frequency Spectrum](results/seg_1/frequency_spectrum.png)  
+*Example frequency spectrum comparison*
+
+## Troubleshooting
+Common issues and solutions:
+- **File not found errors**: Ensure audio files are in the correct `dataset/` directory
+- **Dependency errors**: Run `pip install -r requirements.txt --upgrade`
+- **Visualization issues**: Check matplotlib backend configuration
+
+## Roadmap
+Planned future improvements:
+- [ ] Real-time processing capability
+- [ ] Web interface for interactive analysis
+- [ ] Support for additional audio formats
+
+## Contact
+For questions or support:
+- Project Maintainer: [Zidan]
+- Email: z.zidan9123@gmail.com
+- Issue Tracker: [GitHub Issues](https://github.com/aimldlnlp/audio-denoising/issues)
