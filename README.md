@@ -113,13 +113,13 @@ We welcome contributions! Please follow these steps:
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Sample Results
-![Frequency Spectrum](visualization\seg_1\frequency_spectrum.png)  
+![Frequency Spectrum](visualization/seg_1/frequency_spectrum.png)  
 *Example frequency spectrum comparison*
 
-![Time Domain](visualization\seg_1\power_spectral_density.png)  
+![Time Domain](visualization/seg_1/power_spectral_density.png)  
 *Example time domain comparison*
 
-![Power Spectral Density](visualization\seg_1\power_spectral_density.png)  
+![Power Spectral Density](visualization/seg_1/power_spectral_density.png)  
 *Example psd comparison*
 
 ## Troubleshooting
