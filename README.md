@@ -1,45 +1,125 @@
-# Signal Processing Frequency Analysis
+# Signal Processing Frequency Analysis Toolkit
 
-## Description
-This project is designed for audio signal processing and frequency analysis. It processes audio segments, analyzes their frequency content, and visualizes the results. The project includes functionalities for filtering, noise analysis, and generating various plots to represent the audio signals.
+[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-## Features
-- Load and process audio signals from WAV files.
-- Perform frequency spectrum analysis and power spectral density calculations.
-- Visualize time-domain signals, frequency spectra, and filter responses.
-- Evaluate noise levels in audio segments.
+![Sample Frequency Spectrum](results/seg_1/frequency_spectrum.png)
+
+A comprehensive toolkit for professional audio signal processing and frequency analysis with advanced visualization capabilities.
+
+## Key Features
+
+- **Advanced Signal Processing**:
+  - Multi-band frequency analysis
+  - Noise reduction and filtering
+  - Power spectral density estimation
+  - Signal-to-noise ratio calculations
+
+- **Professional Visualization**:
+  - Interactive time-domain plots
+  - High-resolution frequency spectra
+  - Filter response curves
+  - Batch processing capabilities
+
+- **Quality Metrics**:
+  - Objective audio quality assessment
+  - Noise floor analysis
+  - Spectral distortion measurements
 
 ## Installation
-To set up the project, clone the repository and install the required dependencies:
 
+### Prerequisites
+- Python 3.8+
+- pip package manager
+
+### Recommended Setup
 ```bash
-git clone https://github.com/aimldlnlp/denoising-noise-audio.git
-cd denoising-noise-audio
+# Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+
+# Install exact dependency versions
 pip install -r requirements.txt
 ```
 
-## Usage
-1. Place your audio files in the `dataset/` directory.
-2. Run the main processing script:
-
+### Development Setup
 ```bash
-python main.py
+# Install development dependencies
+pip install -r requirements-dev.txt  # Includes testing and linting tools
+
+# Verify installation
+python -m pytest tests/
 ```
 
-3. The results will be saved in the `results/` directory, including filtered audio, frequency spectrum plots, and noise analysis results.
+## Usage
 
-## Directory Structure
+### Basic Processing
+```python
+from signal_loader import SignalLoader
+from signal_processing import FrequencyAnalyzer
+
+# Load and process signal
+signal = SignalLoader.load("dataset/seg_1.wav")
+analysis = FrequencyAnalyzer.analyze(signal)
+
+# Save results
+analysis.save("results/seg_1/analysis.json")
 ```
-.
-├── dataset/                # Contains input audio files
-├── evaluation/             # Evaluation scripts
-├── results/                # Output results and visualizations
-├── visualization/          # Visualization scripts
-├── main.py                 # Main processing script
-├── signal_loader.py        # Module for loading audio signals
-├── signal_processing.py     # Module for processing audio signals
-└── requirements.txt        # Python dependencies
+
+### Advanced Visualization
+```python
+from visualization import EnhancedSignalVisualizer
+
+# Generate professional quality plots
+visualizer = EnhancedSignalVisualizer()
+visualizer.plot_spectrogram("dataset/seg_1.wav", 
+                          output_path="results/seg_1/spectrogram.png")
 ```
+
+## API Documentation
+
+### Core Modules
+
+#### `signal_processing.FrequencyAnalyzer`
+```python
+class FrequencyAnalyzer:
+    """
+    Performs comprehensive frequency analysis with these key methods:
+    
+    - analyze(signal): Full spectral analysis
+    - estimate_noise_floor(): Calculate noise characteristics
+    - apply_filter(): Digital filter implementation
+    """
+    ...
+```
+
+## Evaluation Metrics
+
+The system calculates these professional audio metrics:
+- Signal-to-Noise Ratio (SNR)
+- Total Harmonic Distortion (THD)
+- Perceptual Evaluation of Audio Quality (PEAQ)
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+Please ensure all code:
+- Follows PEP 8 style guidelines
+- Includes type hints
+- Has corresponding unit tests
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+Project Maintainer: [Your Name] - your.email@example.com
+
+Project Link: [https://github.com/yourusername/signal-processing-toolkit](https://github.com/yourusername/signal-processing-toolkit)
