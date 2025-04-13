@@ -1,4 +1,5 @@
-Audio Denoising Using FIR Filtering ![Python Version](https://img.shields.io/badge/python-3.x-blue) ![License](https://img.shields.io/badge/license-MIT-green)
+# Audio Denoising Using FIR Filtering 
+![Python Version](https://img.shields.io/badge/python-3.x-blue) ![License](https://img.shields.io/badge/license-MIT-green)
 
 A professional audio signal processing pipeline for noise reduction using custom FIR filters, with comprehensive analysis and visualization capabilities.
 
