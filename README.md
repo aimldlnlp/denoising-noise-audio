@@ -1,4 +1,4 @@
-# Signal Processing Frequency Analysis Toolkit
+# Audio Noise Reduction Toolkit with FIR Multiband Filtering
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -6,15 +6,14 @@
 
 ![Sample Frequency Spectrum](results/seg_1/frequency_spectrum.png)
 
-A comprehensive toolkit for professional audio signal processing and frequency analysis with advanced visualization capabilities.
+A comprehensive toolkit for audio noise reduction using FIR multiband filtering, along with advanced signal processing and visualization capabilities.
 
 ## Key Features
 
-- **Advanced Signal Processing**:
-  - Multi-band frequency analysis
-  - Noise reduction and filtering
-  - Power spectral density estimation
-  - Signal-to-noise ratio calculations
+- **FIR Multiband Filtering**:
+  - Effective noise reduction techniques
+  - Customizable filter parameters for various audio signals
+  - Enhanced audio quality through advanced filtering methods
 
 - **Professional Visualization**:
   - Interactive time-domain plots
@@ -77,6 +76,18 @@ visualizer.plot_spectrogram("dataset/seg_1.wav",
                           output_path="results/seg_1/spectrogram.png")
 ```
 
+### Noise Reduction Example
+```python
+# Apply FIR multiband filter
+from signal_processing import FrequencyAnalyzer
+
+analyzer = FrequencyAnalyzer()
+filtered_signal = analyzer.apply_filter(signal)
+
+# Save filtered results
+SignalLoader.save(filtered_signal, "results/seg_1/filtered_audio.wav")
+```
+
 ## API Documentation
 
 ### Core Modules
@@ -120,6 +131,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Project Maintainer: [Your Name] - your.email@example.com
+Project Maintainer: [Zidan] - z,zidan9123@gmail.com
 
-Project Link: [https://github.com/yourusername/signal-processing-toolkit](https://github.com/yourusername/signal-processing-toolkit)
+Project Link: [https://github.com/aimldlnlp/denoising-noise-audio.git](https://github.com/aimldlnlp/denoising-noise-audio.git)
