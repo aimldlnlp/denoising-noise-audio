@@ -1,136 +1,101 @@
-# Audio Noise Reduction Toolkit with FIR Multiband Filtering
+# Audio Denoising Using FIR Filtering
 
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+This project demonstrates an audio denoising pipeline, where noisy audio signals are processed using a custom FIR filter to remove specific frequency bands. The pipeline also includes visualization tools to compare the raw and filtered signals in time and frequency domains, as well as performance evaluation using Signal-to-Noise Ratio (SNR) and Spectral Flatness metrics.
 
-![Sample Frequency Spectrum](results/seg_1/frequency_spectrum.png)
+## Project Structure
 
-A comprehensive toolkit for audio noise reduction using FIR multiband filtering, along with advanced signal processing and visualization capabilities.
+denoising_audio/
+│
+├── README.md
+├── main.py
+├── requirements.txt
+├── signal_loader.py
+├── signal_processing.py
+├── visualization.py
+│
+├── dataset/ (contains .wav audio files)
+├── evaluation/ (contains evaluation scripts)
+├── results/ (contains analysis results per segment)
+└── visualization/ (contains visualization scripts and outputs)
 
-## Key Features
 
-- **FIR Multiband Filtering**:
-  - Effective noise reduction techniques
-  - Customizable filter parameters for various audio signals
-  - Enhanced audio quality through advanced filtering methods
+## Features
 
-- **Professional Visualization**:
-  - Interactive time-domain plots
-  - High-resolution frequency spectra
-  - Filter response curves
-  - Batch processing capabilities
+- **Noise Removal**: The project identifies and removes noise from audio signals using a custom-designed FIR filter.
+- **Frequency Analysis**: It performs Fast Fourier Transform (FFT) and Power Spectral Density (PSD) analysis to identify noise characteristics.
+- **Visualization**: Visualizes the time-domain waveform, frequency spectrum, and PSD of both raw and filtered audio signals.
+- **Evaluation**: Computes Signal-to-Noise Ratio (SNR) and Spectral Flatness to evaluate the effectiveness of the filtering process.
 
-- **Quality Metrics**:
-  - Objective audio quality assessment
-  - Noise floor analysis
-  - Spectral distortion measurements
+## Requirements
 
-## Installation
+- Python 3.x
+- `numpy`
+- `scipy`
+- `soundfile`
+- `matplotlib`
 
-### Prerequisites
-- Python 3.8+
-- pip package manager
+You can install the required dependencies by running:
 
-### Recommended Setup
 ```bash
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-
-# Install exact dependency versions
 pip install -r requirements.txt
-```
 
-### Development Setup
-```bash
-# Install development dependencies
-pip install -r requirements-dev.txt  # Includes testing and linting tools
+# How to Use
 
-# Verify installation
-python -m pytest tests/
-```
+1. **Prepare Your Dataset**: Place your noisy audio files in the `dataset/` directory. The files should be in `.wav` format.
 
-## Usage
+2. **Run the Pipeline**:
+   
+   * The main script `main.py` loads an audio file, applies FIR filtering to remove noise, and saves the filtered audio in the `results/` directory.
+   
+   * You can specify the audio file path in the `main.py` script by modifying the `audio_file_path` variable.
 
-### Basic Processing
-```python
-from signal_loader import SignalLoader
-from signal_processing import FrequencyAnalyzer
+3. **Visualize the Results**:
+   
+   * The `visualization/usage.py` script generates time-domain and frequency-domain visualizations comparing the original and filtered signals for a single audio segment.
+   
+   * The `visualization/batch_visualize.py` script can be used to generate visualizations for all the audio segments in the `dataset/` directory.
 
-# Load and process signal
-signal = SignalLoader.load("dataset/seg_1.wav")
-analysis = FrequencyAnalyzer.analyze(signal)
+4. **Evaluate the Performance**:
+   
+   * The `evaluation/eval.py` script calculates the Signal-to-Noise Ratio (SNR) and Spectral Flatness for a pair of noisy and filtered signals.
 
-# Save results
-analysis.save("results/seg_1/analysis.json")
-```
+## Code Description
 
-### Advanced Visualization
-```python
-from visualization import EnhancedSignalVisualizer
+### `main.py`
 
-# Generate professional quality plots
-visualizer = EnhancedSignalVisualizer()
-visualizer.plot_spectrogram("dataset/seg_1.wav", 
-                          output_path="results/seg_1/spectrogram.png")
-```
+The entry point for the audio denoising pipeline. It loads an audio file, normalizes the signal, identifies noise characteristics, designs an FIR filter to remove noise, and saves the filtered audio.
 
-### Noise Reduction Example
-```python
-# Apply FIR multiband filter
-from signal_processing import FrequencyAnalyzer
+### `signal_loader.py`
 
-analyzer = FrequencyAnalyzer()
-filtered_signal = analyzer.apply_filter(signal)
+Responsible for loading, normalizing, and saving audio signals. It uses the `soundfile` library to read and write `.wav` files.
 
-# Save filtered results
-SignalLoader.save(filtered_signal, "results/seg_1/filtered_audio.wav")
-```
+### `signal_processing.py`
 
-## API Documentation
+Contains the `FrequencyAnalyzer` class, which performs:
 
-### Core Modules
+*   FFT for frequency domain analysis
+*   Power Spectral Density (PSD) calculation
+*   Design and application of an FIR filter to remove noise
 
-#### `signal_processing.FrequencyAnalyzer`
-```python
-class FrequencyAnalyzer:
-    """
-    Performs comprehensive frequency analysis with these key methods:
-    
-    - analyze(signal): Full spectral analysis
-    - estimate_noise_floor(): Calculate noise characteristics
-    - apply_filter(): Digital filter implementation
-    """
-    ...
-```
+### `visualization/`
 
-## Evaluation Metrics
+Contains functions to visualize the signals:
 
-The system calculates these professional audio metrics:
-- Signal-to-Noise Ratio (SNR)
-- Total Harmonic Distortion (THD)
-- Perceptual Evaluation of Audio Quality (PEAQ)
+*   `EnhancedSignalVisualizer`: Provides static methods to plot time-domain waveforms, frequency spectrum, and PSD.
+*   `batch_visualize.py`: A script to generate visualizations for all audio segments in the `dataset/` directory.
+*   `usage.py`: A script to generate visualizations for a single audio segment.
 
-## Contributing
+### `evaluation/eval.py`
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Calculates and displays the Signal-to-Noise Ratio (SNR) and Spectral Flatness between the original noisy and filtered audio signals.
 
-Please ensure all code:
-- Follows PEP 8 style guidelines
-- Includes type hints
-- Has corresponding unit tests
+## Future Improvements
+
+*   **Machine Learning-based Denoising**: Implement machine learning models to learn noise profiles and remove noise more effectively.
+*   **Multi-band FIR Filtering**: Use adaptive or multi-band FIR filtering to handle more complex noise types.
+*   **Web Interface**: Create a web application for interactive audio denoising and visualization.
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## Contact
-
-Project Maintainer: [Zidan] - z,zidan9123@gmail.com
-
-Project Link: [https://github.com/aimldlnlp/denoising-noise-audio.git](https://github.com/aimldlnlp/denoising-noise-audio.git)
+This project is licensed under the MIT License - see the LICENSE file for details.
+"""
