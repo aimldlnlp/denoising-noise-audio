@@ -1,0 +1,14 @@
+Analysis results for dataset\seg_1.wav:
+Stopband Maximum Attenuation: 49.05 dB
+
+Analysis results for dataset\seg_10.wav:
+Stopband Maximum Attenuation: 59.43 dB
+
+Analysis results for dataset\seg_100.wav:
+Stopband Maximum Attenuation: 65.15 dB
+
+Analysis results for dataset\seg_101.wav:
+Stopband Maximum Attenuation: 63.72 dB
+
+Analysis results for dataset\seg_102.wav:
+Stopband Maximum Attenuation: 51.33 dB

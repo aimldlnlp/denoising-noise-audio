@@ -1,0 +1,11 @@
+Dominant Frequencies:
+Frequency: 49.60 Hz, Magnitude: 1275.58
+Frequency: 49.80 Hz, Magnitude: 987.81
+Frequency: 100.00 Hz, Magnitude: 678.35
+Frequency: 85.40 Hz, Magnitude: 598.72
+Frequency: 86.40 Hz, Magnitude: 583.94
+
+Noise Characteristics:
+rms_amplitude: 0.05479984594585975
+noise_floor: 1.3661314328584063e-07
+signal_to_noise_ratio: 43.42066191195728
